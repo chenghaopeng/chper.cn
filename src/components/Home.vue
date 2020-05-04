@@ -6,6 +6,7 @@
     <div id="back2" class="back">
       <div class="blur"></div>
     </div>
+    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 50"><defs><clipPath id="_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC"><rect width="50" height="50"/></clipPath></defs><g clip-path="url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)"><path d=" M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z " fill-rule="evenodd" fill="rgb(235,235,235)"/></g></svg>
   </div>
 </template>
 
@@ -37,6 +38,12 @@ export default {
       } else {
         $back1.style.opacity = '1'
         $back2.style.opacity = '0'
+      }
+      let $arrow = document.querySelector('#arrow')
+      if (scrolled >= 0.7) {
+        $arrow.style.opacity = '0'
+      } else {
+        $arrow.style.opacity = '0.5'
       }
     }, true)
   }
@@ -78,5 +85,19 @@ export default {
 }
 #back2 {
   opacity: 0;
+}
+#arrow {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 20px;
+  height: 20px;
+  animation: dropdown 5s cubic-bezier(0.34, 1.56, 0.64, 1) 2s infinite;
+  transition: 3s;
+}
+@keyframes dropdown {
+  0% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(20px); opacity: 0.1; }
+  100% { transform: translateY(0); opacity: 0.5; }
 }
 </style>
