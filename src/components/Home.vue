@@ -6,7 +6,7 @@
     <div id="back2" class="back">
       <div class="blur"></div>
     </div>
-    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 50"><defs><clipPath id="_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC"><rect width="50" height="50"/></clipPath></defs><g clip-path="url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)"><path d=" M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z " fill-rule="evenodd" fill="rgb(235,235,235)"/></g></svg>
+    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 50"><defs><clipPath id="_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC"><rect width="50" height="50"/></clipPath></defs><g clip-path="url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)"><path d=" M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z " fill-rule="evenodd"/></g></svg>
   </div>
 </template>
 
@@ -17,8 +17,8 @@ export default {
     return {
     }
   },
-  mounted () {
-    window.addEventListener('scroll', () => {
+  methods: {
+    scroll: function () {
       let scrolled = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)
       let $blurs = document.querySelectorAll('.blur')
       for (let $blur of $blurs) {
@@ -40,12 +40,18 @@ export default {
         $back2.style.opacity = '0'
       }
       let $arrow = document.querySelector('#arrow')
-      if (scrolled >= 0.7) {
-        $arrow.style.opacity = '0'
+      if (scrolled >= 0.8) {
+        $arrow.classList.remove('animating')
+        $arrow.classList.add('hiding')
       } else {
-        $arrow.style.opacity = '0.5'
+        $arrow.classList.remove('hiding')
+        $arrow.classList.add('animating')
       }
-    }, true)
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.scroll, true)
+    this.scroll()
   }
 }
 </script>
@@ -92,8 +98,16 @@ export default {
   bottom: 50px;
   width: 20px;
   height: 20px;
+  transition: 1s;
+  fill: white;
+}
+#arrow.animating {
   animation: dropdown 5s cubic-bezier(0.34, 1.56, 0.64, 1) 2s infinite;
-  transition: 3s;
+  opacity: 0.5;
+}
+#arrow.hiding {
+  animation: none;
+  opacity: 0;
 }
 @keyframes dropdown {
   0% { transform: translateY(0); opacity: 0.5; }
