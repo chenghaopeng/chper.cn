@@ -1,12 +1,17 @@
 <template>
-  <div class="home">
-    <div id="back1" class="back">
-      <div class="blur"></div>
+  <div class='home'>
+    <div id='back1' class='back'>
+      <div class='blur'></div>
     </div>
-    <div id="back2" class="back">
-      <div class="blur"></div>
+    <div id='back2' class='back'>
+      <div class='blur'></div>
     </div>
-    <svg id="arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 50 50"><defs><clipPath id="_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC"><rect width="50" height="50"/></clipPath></defs><g clip-path="url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)"><path d=" M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z " fill-rule="evenodd"/></g></svg>
+    <svg id='arrow' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='isolation:isolate' viewBox='0 0 50 50'><defs><clipPath id='_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC'><rect width='50' height='50'/></clipPath></defs><g clip-path='url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)'><path d=' M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z ' fill-rule='evenodd'/></g></svg>
+    <div class='scene'></div>
+    <div class='scene'>
+      <div class='logo'></div>
+    </div>
+    <div class='scene'></div>
   </div>
 </template>
 
@@ -47,6 +52,29 @@ export default {
         $arrow.classList.remove('hiding')
         $arrow.classList.add('animating')
       }
+      let $scenes = document.querySelectorAll('.scene')
+      for (let i = 0; i < $scenes.length; ++i) {
+        if (scrolled >= i * 1 / 3 && scrolled < (i + 1) * 1 / 3) {
+          $scenes[i].style.opacity = '1'
+        } else {
+          $scenes[i].style.opacity = '0'
+        }
+      }
+      let $logo = document.querySelector('.logo')
+      if (scrolled >= 1 / 3 && scrolled < 2 / 3) {
+        if (scrolled < 1 / 3 + 1 / 9) {
+          $logo.style.opacity = ((scrolled - 1 / 3) * 9).toString()
+          $logo.style.transform = 'scale(' + (scrolled - 1 / 3) * 9 * (scrolled - 1 / 3) * 9 + ')'
+        } else {
+          $logo.style.opacity = '1'
+          $logo.style.transform = 'scale(1)'
+          if (scrolled < 1 / 3 + 1 / 9 * 2) {
+            $logo.style.transform = 'translate(' + (-1 * (scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin, ' + (-1 * (scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin)'
+          } else {
+            $logo.style.transform = 'translate(-1vmin, -1vmin)'
+          }
+        }
+      }
     }
   },
   mounted () {
@@ -58,7 +86,7 @@ export default {
 
 <style scoped>
 .home {
-  height: 300vh;
+  height: 600vh;
   width: 100%;
 }
 .home,
@@ -113,5 +141,25 @@ export default {
   0% { transform: translateY(0); opacity: 0.5; }
   30% { transform: translateY(20px); opacity: 0.1; }
   100% { transform: translateY(0); opacity: 0.5; }
+}
+.scene {
+  opacity: 0;
+  transition: 1s;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  background-image: url(../assets/logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 2vmin;
+  opacity: 0;
 }
 </style>
