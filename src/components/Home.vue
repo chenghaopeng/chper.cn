@@ -10,6 +10,8 @@
     <div class='scene'></div>
     <div class='scene'>
       <div class='logo'></div>
+      <div class="name">鹏鹏</div>
+      <div class="say">想要成为设计师的准软件工程师</div>
     </div>
     <div class='scene'></div>
   </div>
@@ -77,6 +79,28 @@ export default {
             $logo.style.boxShadow = '1vmin 1vmin 5vmin 1vmin rgba(0, 0, 0, ' + (1 / 3) + ')'
           }
         }
+      }
+      let $name = document.querySelector('.name')
+      let $say = document.querySelector('.say')
+      if (scrolled >= 1 / 3 + 1 / 9 && scrolled < 1 / 3 + 1 / 9 * 2) {
+        let p = (scrolled - 1 / 3 - 1 / 9) * 9
+        $name.style.opacity = p * p
+        $say.style.opacity = p * p
+        $name.style.transform = 'translateY(' + (100 * (1 - p) * (1 - p)) + '%)'
+        $say.style.transform = 'translateY(' + (100 * (1 - p) * (1 - p) * (1 - p)) + '%)'
+      } else if (scrolled >= 1 / 3 + 1 / 9 * 2) {
+        $name.style.opacity = 1
+        $say.style.opacity = 1
+        $name.style.transform = 'translateY(0%)'
+        $say.style.transform = 'translateY(0%)'
+      }
+      if (scrolled >= 1 / 3 + 1 / 9 * 2 && scrolled < 1 / 3 + 1 / 9 * 3) {
+        let p = (scrolled - 1 / 3 - 1 / 9 * 2) * 9
+        $name.style.fontWeight = (100 + Math.sqrt(1 - Math.pow(p - 1, 2)) * 300).toString()
+        $say.style.fontWeight = (100 + Math.sqrt(1 - Math.pow(p - 1, 2)) * 200).toString()
+      } else if (scrolled >= 1 / 3 + 1 / 9 * 3) {
+        $name.style.fontWeight = '400'
+        $say.style.fontWeight = '300'
       }
     }
   },
@@ -165,5 +189,19 @@ export default {
   border-radius: 2vmin;
   opacity: 0;
   transition: box-shadow 0.5s;
+}
+.name {
+  margin-top: 2.5vmin;
+  font-size: 6vmin;
+}
+.say {
+  margin-top: 1vmin;
+  font-size: 3vmin;
+}
+.name,
+.say {
+  font-weight: 100;
+  transform: translateY(100%);
+  opacity: 0;
 }
 </style>
