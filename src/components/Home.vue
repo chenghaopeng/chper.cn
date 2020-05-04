@@ -65,13 +65,16 @@ export default {
         if (scrolled < 1 / 3 + 1 / 9) {
           $logo.style.opacity = ((scrolled - 1 / 3) * 9).toString()
           $logo.style.transform = 'scale(' + (scrolled - 1 / 3) * 9 * (scrolled - 1 / 3) * 9 + ')'
+          $logo.style.boxShadow = 'none'
         } else {
           $logo.style.opacity = '1'
           $logo.style.transform = 'scale(1)'
           if (scrolled < 1 / 3 + 1 / 9 * 2) {
             $logo.style.transform = 'translate(' + (-1 * (scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin, ' + (-1 * (scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin)'
+            $logo.style.boxShadow = ((scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin ' + ((scrolled - 1 / 3 - 1 / 9) * 9) + 'vmin 5vmin 1vmin rgba(0, 0, 0, ' + (2 / 3 - (scrolled - 1 / 3 - 1 / 9) * 9 / 3) + ')'
           } else {
             $logo.style.transform = 'translate(-1vmin, -1vmin)'
+            $logo.style.boxShadow = '1vmin 1vmin 5vmin 1vmin rgba(0, 0, 0, ' + (1 / 3) + ')'
           }
         }
       }
@@ -161,5 +164,6 @@ export default {
   height: 20vmin;
   border-radius: 2vmin;
   opacity: 0;
+  transition: box-shadow 0.5s;
 }
 </style>
