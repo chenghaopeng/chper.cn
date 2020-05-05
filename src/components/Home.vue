@@ -8,14 +8,23 @@
     </div>
     <svg id='arrow' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='isolation:isolate' viewBox='0 0 50 50'><defs><clipPath id='_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC'><rect width='50' height='50'/></clipPath></defs><g clip-path='url(#_clipPath_AsJKgimMsSXFeT2uLS5Tj3jwSrgqg3eC)'><path d=' M 15.546 7.5 L 4.793 7.5 L 14.896 25 L 25 42.5 L 35.104 25 L 45.207 7.5 L 34.454 7.5 L 29.727 15.688 L 25 23.875 L 20.273 15.687 L 15.546 7.5 Z ' fill-rule='evenodd'/></g></svg>
     <div class='scene'>
-      <div class="me"></div>
+      <div class='me'></div>
     </div>
     <div class='scene'>
       <div class='logo'></div>
-      <div class="name">鹏鹏</div>
-      <div class="say">想要成为设计师的准软件工程师</div>
+      <div class='name'>鹏鹏</div>
+      <div class='say'>想要成为设计师的准软件工程师</div>
     </div>
-    <div class='scene'></div>
+    <div class='scene'>
+      <div class='navigator'>
+        <div class='navrow' v-for='nav in navs' v-bind:key='nav.category'>
+          <div class='category'>{{ nav.category }}</div>
+          <div class='links'>
+            <a target='_blank' v-for='link in nav.links' v-bind:key='link.name' :href='link.href'><div class='link'>{{ link.name }}</div></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,6 +33,135 @@ export default {
   name: 'Home',
   data () {
     return {
+      navs: [
+        {
+          category: '博客们',
+          links: [
+            {
+              name: '日常博客',
+              href: 'http://blog.chper.cn/'
+            },
+            {
+              name: 'OI 博客',
+              href: 'http://oi.chper.cn/'
+            },
+            {
+              name: '旧 OI 博客',
+              href: 'http://old.chper.cn/'
+            }
+          ]
+        },
+        {
+          category: '我活跃的地方',
+          links: [
+            {
+              name: 'GitHub',
+              href: 'https://github.com/chenghaopeng'
+            },
+            {
+              name: 'deepin 社区',
+              href: 'https://bbs.deepin.org/home.php?mod=space&uid=74043'
+            },
+            {
+              name: '知乎',
+              href: 'https://www.zhihu.com/people/cheng-hao-peng-70/'
+            },
+            {
+              name: 'CodePen',
+              href: 'https://codepen.io/chenghaopeng'
+            }
+          ]
+        },
+        {
+          category: '自制的奇怪东西们',
+          links: [
+            {
+              name: '盒子',
+              href: 'http://box.chper.cn/'
+            },
+            {
+              name: 'chpoj',
+              href: 'http://oj.chper.cn/'
+            },
+            {
+              name: '视频',
+              href: 'http://y.chper.cn/'
+            },
+            {
+              name: '英语单词',
+              href: 'http://word.chper.cn/'
+            },
+            {
+              name: '蹭饭',
+              href: 'http://chper.cn/cengfan'
+            }
+          ]
+        },
+        {
+          category: '比赛的辣鸡作品们',
+          links: [
+            {
+              name: 'EL 比赛 1 日肝作品：BitWorld',
+              href: 'http://bit.chper.cn/'
+            },
+            {
+              name: 'MSC Hackathon：南大飞毛腿',
+              href: 'http://h.chper.cn/'
+            },
+            {
+              name: '花旗杯：FR Shield 企业相对风险识别及评分系统',
+              href: 'http://hqb.chper.cn/'
+            },
+            {
+              name: '华东八校 Hackathon：Yoqubing 有求必应',
+              href: 'http://yoqubing.chper.cn/'
+            }
+          ]
+        },
+        {
+          category: '据为己用的东西们',
+          links: [
+            {
+              name: '云端',
+              href: 'http://cloud.chper.cn/'
+            },
+            {
+              name: 'WTFGame',
+              href: 'http://wtf.chper.cn/'
+            }
+          ]
+        },
+        {
+          category: '我',
+          links: [
+            {
+              name: '联系',
+              href: 'tencent://Message/?Uin=794780360&websiteName=q-zone.qq.com&Menu=yes'
+            },
+            {
+              name: '是谁',
+              href: 'http://blog.chper.cn/me.html'
+            }
+          ]
+        },
+        {
+          category: '朋友们',
+          links: [
+            {
+              name: '翠翠酱',
+              href: 'https://idealclover.top/'
+            },
+            {
+              name: 'MaoRX | 静水流深',
+              href: 'https://www.maorx.cn/'
+            },
+            {
+              name: 'bobo',
+              href: 'http://byzeal.cn/'
+            }
+          ]
+        }
+      ]
     }
   },
   methods: {
@@ -58,7 +196,7 @@ export default {
       }
       let $scenes = document.querySelectorAll('.scene')
       for (let i = 0; i < $scenes.length; ++i) {
-        if (scrolled >= i * 1 / 3 && scrolled < (i + 1) * 1 / 3) {
+        if (scrolled > i * 1 / 3 && scrolled <= (i + 1) * 1 / 3) {
           $scenes[i].style.opacity = '1'
           $scenes[i].style.visibility = 'visible'
         } else {
@@ -235,5 +373,72 @@ export default {
   font-weight: 100;
   transform: translateY(100%);
   opacity: 0;
+}
+.navigator {
+  width: 80%;
+  max-width: 1200px;
+  height: 90vh;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: scroll;
+}
+.navigator::-webkit-scrollbar {
+  display: none;
+}
+.navrow {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  transition: 0.3s ease-in-out;
+}
+.category {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.links {
+  width: 60%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+}
+.category,
+.link {
+  margin: 0.5em;
+  padding: 0.5em 1.5em;
+  position: relative;
+  line-height: 1.5em;
+  overflow: hidden;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  box-shadow: 0.1em 0.1em 0.5em 0.1em #00000033;
+}
+.link {
+  cursor: pointer;
+}
+.links a,
+.links a:hover,
+.links a:active,
+.links a:visited {
+  text-decoration: none;
+  color: black;
+}
+.category::before,
+.link::before {
+  content: '';
+  position: absolute;
+  --offset: -5%;
+  top: var(--offset);
+  right: var(--offset);
+  bottom: var(--offset);
+  left: var(--offset);
+  backdrop-filter: blur(2em) brightness(120%);
+  z-index: -1;
+}
+.navrow:hover .category::before,
+.link:hover::before {
+  backdrop-filter: blur(1em) brightness(150%);
 }
 </style>
