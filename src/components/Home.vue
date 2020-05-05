@@ -95,8 +95,7 @@ export default {
         $say.style.opacity = 1
         $name.style.transform = 'translateY(0%)'
         $say.style.transform = 'translateY(0%)'
-      }
-      else if (scrolled < 1 / 3 + 1 / 9) {
+      } else if (scrolled < 1 / 3 + 1 / 9) {
         $name.style.opacity = 0
         $say.style.opacity = 0
         $name.style.transform = 'translateY(100%)'
