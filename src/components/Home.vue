@@ -58,8 +58,10 @@ export default {
       for (let i = 0; i < $scenes.length; ++i) {
         if (scrolled >= i * 1 / 3 && scrolled < (i + 1) * 1 / 3) {
           $scenes[i].style.opacity = '1'
+          $scenes[i].style.visibility = 'visible'
         } else {
           $scenes[i].style.opacity = '0'
+          $scenes[i].style.visibility = 'hidden'
         }
       }
       let $logo = document.querySelector('.logo')
@@ -93,6 +95,12 @@ export default {
         $say.style.opacity = 1
         $name.style.transform = 'translateY(0%)'
         $say.style.transform = 'translateY(0%)'
+      }
+      else if (scrolled < 1 / 3 + 1 / 9) {
+        $name.style.opacity = 0
+        $say.style.opacity = 0
+        $name.style.transform = 'translateY(100%)'
+        $say.style.transform = 'translateY(100%)'
       }
       if (scrolled >= 1 / 3 + 1 / 9 * 2 && scrolled < 1 / 3 + 1 / 9 * 3) {
         let p = (scrolled - 1 / 3 - 1 / 9 * 2) * 9
@@ -171,6 +179,7 @@ export default {
 }
 .scene {
   opacity: 0;
+  visibility: hidden;
   transition: 1s;
   height: 100vh;
   width: 100%;
