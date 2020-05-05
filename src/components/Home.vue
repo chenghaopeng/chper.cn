@@ -115,9 +115,11 @@ export default {
         let p = (scrolled - 1 / 3 - 1 / 9 * 2) * 9
         $name.style.fontWeight = (100 + Math.sqrt(1 - Math.pow(p - 1, 2)) * 300).toString()
         $say.style.fontWeight = (100 + Math.sqrt(1 - Math.pow(p - 1, 2)) * 200).toString()
+        $say.style.letterSpacing = (p * p / 10 * 3 + 0.2) + 'vmin'
       } else if (scrolled >= 1 / 3 + 1 / 9 * 3) {
         $name.style.fontWeight = '400'
         $say.style.fontWeight = '300'
+        $say.style.letterSpacing = '0.5vmin'
       }
     }
   },
@@ -226,6 +228,7 @@ export default {
 .say {
   margin-top: 1vmin;
   font-size: 3vmin;
+  letter-spacing: .1vmin;
 }
 .name,
 .say {
