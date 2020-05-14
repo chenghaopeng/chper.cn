@@ -17,10 +17,12 @@
     </div>
     <div class='scene'>
       <div class='navigator'>
-        <div class='navrow' v-for='nav in navs' v-bind:key='nav.category'>
-          <div class='category'>{{ nav.category }}</div>
-          <div class='links'>
-            <a target='_blank' v-for='link in nav.links' v-bind:key='link.name' :href='link.href'><div class='link'>{{ link.name }}</div></a>
+        <div v-for='nav in navs' :key='nav.category' class='navbar'>
+          <div class='navtitle'>{{ nav.category }}</div>
+          <div class='navitems'>
+            <a v-for='link in nav.links' :key='link.name' :href='link.href' target='_blank'>
+              <div class='navitem'>{{ link.name }}</div>
+            </a>
           </div>
         </div>
       </div>
@@ -377,68 +379,56 @@ export default {
 .navigator {
   width: 80%;
   max-width: 1200px;
-  height: 90vh;
+  height: 50vh;
+  max-height: 600px;
+  padding: 0.5em;
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
   overflow-y: scroll;
 }
 .navigator::-webkit-scrollbar {
   display: none;
 }
-.navrow {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  transition: 0.3s ease-in-out;
+.navbar {
+  width: 90%;
+  max-width: 500px;
+  flex: none;
+  margin: 0.5em;
+  backdrop-filter: blur(3em);
+  background-color: #00000011;
+  border-radius: 1em;
+  overflow: hidden;
+  box-shadow: 0.3em 0.3em 0.8em 0em #00000066;
+  transition: 0.3s;
 }
-.category {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.navbar:hover {
+  background-color: #ffffff11;
 }
-.links {
-  width: 60%;
+.navtitle {
+  padding: 0.5em 1em;
+  color: #aaaaaadd;
+  font-size: 1.1em;
+}
+.navitems {
+  padding: 0.5em 1em;
   display: flex;
   flex-flow: row wrap;
-  align-items: baseline;
+  margin-bottom: 0.5em;
 }
-.category,
-.link {
-  margin: 0.5em;
-  padding: 0.5em 1.5em;
-  position: relative;
-  line-height: 1.5em;
-  overflow: hidden;
-  font-size: 1.2em;
-  border-radius: 0.5em;
-  box-shadow: 0.1em 0.1em 0.5em 0.1em #00000033;
-}
-.link {
-  cursor: pointer;
-}
-.links a,
-.links a:hover,
-.links a:active,
-.links a:visited {
+.navitems a,
+.navitems a:active,
+.navitems a:visited {
   text-decoration: none;
   color: black;
 }
-.category::before,
-.link::before {
-  content: '';
-  position: absolute;
-  --offset: -5%;
-  top: var(--offset);
-  right: var(--offset);
-  bottom: var(--offset);
-  left: var(--offset);
-  backdrop-filter: blur(2em) brightness(120%);
-  z-index: -1;
+.navitem {
+  line-height: 1.5em;
+  transition: 0.3s;
+  margin-right: 1em;
 }
-.navrow:hover .category::before,
-.link:hover::before {
-  backdrop-filter: blur(1em) brightness(150%);
+.navitem:hover {
+  color: #ffffff88;
+  text-shadow: 0em 0em 0.5em white;
 }
 </style>
