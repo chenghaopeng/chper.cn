@@ -2,8 +2,9 @@
   <div :class="$style.whole">
     <div :class="$style.logo">
       <span v-for="piece in logoPieces" :key="piece" :style="piece"></span>
+      <span></span>
     </div>
-    <div>鹏鹏</div>
+    <div :class="$style.pp">鹏鹏</div>
   </div>
 </template>
 
@@ -84,7 +85,18 @@ export default defineComponent({
       height: 100%;
       border-radius: inherit;
       overflow: inherit;
+      &:last-child {
+        box-shadow: -8px -8px 16px 0px fade(black, 40) inset, 8px 8px 16px 0px fade(white, 80) inset;
+      }
     }
+  }
+  .pp {
+    margin-top: 16px;
+    background-image: radial-gradient(#6fb0ff, #005fd3);
+    background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    font-weight: 200;
   }
 }
 @keyframes fadein {
