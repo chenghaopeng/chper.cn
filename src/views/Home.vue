@@ -5,6 +5,7 @@
       <span></span>
     </div>
     <div :class="$style.pp">鹏鹏</div>
+    <app-icon style="height: 256px; width: 256px;"></app-icon>
   </div>
 </template>
 
@@ -12,9 +13,13 @@
 import { defineComponent } from 'vue'
 import logo from '@/assets/logo'
 import isMobile from '@/utils/mobile'
+import AppIcon from '@/components/AppIcon.vue'
 
 export default defineComponent({
   name: 'Home',
+  components: {
+    AppIcon
+  },
   data () {
     return {
       logoPieces: [{}]
@@ -31,7 +36,7 @@ export default defineComponent({
       return {
         clipPath: `polygon(${piece[0]})`,
         backgroundColor: piece[1],
-        animation: `${keyframeName} ${Math.pow(Math.random(), Math.random() * 3) * 3 + 2}s ease-in-out ${Math.pow(Math.random(), Math.random() * 3) * 4 + 4}s infinite alternate-reverse`
+        animation: `${keyframeName} ${Math.pow(Math.random(), Math.random() * 3) * 3 + 2}s ease-in-out ${Math.pow(Math.random(), Math.random() * 3) * 4 + 4}s 3 alternate-reverse`
       }
     })
     if (!isMobile) {
