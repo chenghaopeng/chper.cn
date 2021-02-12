@@ -7,14 +7,14 @@
       </div>
     </div>
     <div :class="$style.apps">
-      <app-icon v-for="(app, index) in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(index)"></app-icon>
+      <app-icon v-for="app in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(app)"></app-icon>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-core'
-import { Apps, Categories, getApps } from '@/utils/api'
+import { App, Apps, Categories, getApps } from '@/utils/api'
 import AppIcon from '@/components/AppIcon.vue'
 import openInNewTab from '@/utils/tab'
 
@@ -67,8 +67,7 @@ export default defineComponent({
     handleCategoryClick (index: number) {
       this.categoryIndex = index
     },
-    handleAppClick (index: number) {
-      const app = this.categories[this.categoryIndex - 1].apps[index]
+    handleAppClick (app: App) {
       if (app.builtin) {
         alert('正在施工，敬请期待..')
       } else {

@@ -2,6 +2,7 @@
   <div :class="$style.whole">
     <my-logo></my-logo>
     <app-panel></app-panel>
+    <page-footer></page-footer>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 import { defineComponent } from 'vue'
 import MyLogo from '@/components/MyLogo.vue'
 import AppPanel from '@/components/AppPanel.vue'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
     MyLogo,
-    AppPanel
+    AppPanel,
+    PageFooter
   }
 })
 </script>
@@ -25,6 +28,7 @@ export default defineComponent({
   padding: 8vmin;
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, auto) 1fr;
   gap: 32px;
   align-content: start;
   &, &::before {
