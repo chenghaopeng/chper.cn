@@ -1,6 +1,7 @@
 <template>
   <footer :class="$style.whole">
-    © 2014-2021 鹏鹏 享有并保留本站所有包括但不限于文本、图片、视频等的所有权利
+    <div>本工地正在持续施工中，注意安全，敬请期待...</div>
+    <div>© 2014-2021 鹏鹏 享有并保留本站所有包括但不限于文本、图片、视频等的所有权利</div>
   </footer>
 </template>
 
@@ -14,13 +15,13 @@ export default defineComponent({
 
 <style lang="less" module>
 .whole {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  bottom: 2vmin;
+  padding-top: 16px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
   align-items: center;
+  div {
+    line-height: 28px;
+  }
 }
 </style>
