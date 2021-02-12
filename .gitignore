@@ -27,3 +27,5 @@ node_modules*
 .history
 
 资源
+
+public/data

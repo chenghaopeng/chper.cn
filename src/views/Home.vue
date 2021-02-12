@@ -5,7 +5,14 @@
       <span></span>
     </div>
     <div :class="$style.pp">鹏鹏</div>
-    <app-icon style="height: 256px; width: 256px;"></app-icon>
+    <div :class="$style.tabs">
+      <div v-for="(tab, index) in categoryNames" :key="tab.name" :class="$style.tab" @click="handleCategoryClick(index)">
+        {{ tab.name }}
+      </div>
+    </div>
+    <div :class="$style.apps">
+      <app-icon v-for="app in apps" :key="app.name"></app-icon>
+    </div>
   </div>
 </template>
 
@@ -14,15 +21,43 @@ import { defineComponent } from 'vue'
 import logo from '@/assets/logo'
 import isMobile from '@/utils/mobile'
 import AppIcon from '@/components/AppIcon.vue'
+import { Apps, Categories, getApps } from '@/utils/api'
 
 export default defineComponent({
   name: 'Home',
   components: {
     AppIcon
   },
-  data () {
+  data (): {
+    logoPieces: {
+      clipPath: string;
+      backgroundColor: string;
+      animation: string;
+    }[];
+    categories: Categories;
+    categoryNames: {
+      name: string;
+      icon: string;
+    }[];
+    categoryIndex: number;
+    apps: Apps;
+    } {
     return {
-      logoPieces: [{}]
+      logoPieces: [],
+      categories: [],
+      categoryNames: [],
+      categoryIndex: 0,
+      get apps () {
+        if (this.categories.length === 0) return []
+        if (this.categoryIndex === 0) {
+          let apps: Apps = []
+          for (let i = 0; i < this.categories.length; ++i) {
+            apps = apps.concat(this.categories[i].apps)
+          }
+          return apps
+        }
+        return this.categories[this.categoryIndex - 1].apps
+      }
     }
   },
   mounted () {
@@ -44,6 +79,21 @@ export default defineComponent({
       style.innerText = keyframes.join('\n')
       const body = document.querySelector('body') as HTMLBodyElement
       body.appendChild(style)
+    }
+    getApps().then(data => {
+      this.categories = data.categories
+      this.categoryNames = [{ name: '全部', icon: '' }].concat(this.categories.map(category => {
+        return {
+          name: category.name,
+          icon: category.icon
+        }
+      }))
+      this.categoryIndex = 1
+    })
+  },
+  methods: {
+    handleCategoryClick (index: number) {
+      this.categoryIndex = index
     }
   }
 })
