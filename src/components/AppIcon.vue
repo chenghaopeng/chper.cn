@@ -1,6 +1,6 @@
 <template>
-  <div :class="$style.whole" :style="{ '--size': (size | 0) * 64 + 'px' }" @click="handleClick">
-    <svg viewBox="0 0 128 128">
+  <div :class="$style.whole" :style="{ '--size': (size | 0) * 32 + 'px', '--name': `'${this.name}'` }">
+    <svg viewBox="0 0 128 128" @click="handleClick">
       <defs>
         <clipPath :id="id">
           <path :d="path"></path>
@@ -16,6 +16,7 @@ import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
   name: 'AppIcon',
+  emits: ['click'],
   props: {
     src: {
       type: String,
@@ -27,7 +28,11 @@ export default defineComponent({
     },
     size: {
       type: Number,
-      default: 2
+      default: 4
+    },
+    name: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -43,7 +48,7 @@ export default defineComponent({
   },
   methods: {
     handleClick () {
-      return null
+      this.$emit('click')
     }
   }
 })
@@ -51,11 +56,24 @@ export default defineComponent({
 
 <style lang="less" module>
 .whole {
-  height: var(--size);
-  width: var(--size);
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  &::after {
+    content: var(--name);
+    position: absolute;
+    bottom: -28px;
+    word-break: keep-all;
+  }
   svg {
-    width: 100%;
-    height: 100%;
+    height: var(--size);
+    width: var(--size);
+    cursor: pointer;
+    &:active {
+      filter: brightness(64%);
+    }
   }
 }
 </style>

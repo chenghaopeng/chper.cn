@@ -22,10 +22,11 @@ export default defineComponent({
 <style lang="less" module>
 .whole {
   min-height: 100vh;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+  padding: 8vmin;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-content: start;
   &, &::before {
     animation-name: fadein;
     animation-delay: 2s;
