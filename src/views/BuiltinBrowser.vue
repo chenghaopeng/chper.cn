@@ -48,7 +48,7 @@ export default defineComponent({
       openInNewTab(this.app.repository)
     },
     handleClose () {
-      (this.$refs as any).iframe.remove()
+      (this.$refs.iframe as HTMLElement).remove()
       this.$router.push('/')
     }
   }
