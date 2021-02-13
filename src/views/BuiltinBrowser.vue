@@ -17,7 +17,7 @@
         </svg>
       </div>
     </div>
-    <iframe :src="href" frameborder="0"></iframe>
+    <iframe :src="href" frameborder="0" ref="iframe"></iframe>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default defineComponent({
   name: 'BuiltinBrowser',
   mounted () {
     if (this.href !== Base64.decode(this.$route.params.href as string)) {
-      this.$router.push('/')
+      this.handleClose()
     }
   },
   computed: mapState({
@@ -48,6 +48,7 @@ export default defineComponent({
       openInNewTab(this.app.repository)
     },
     handleClose () {
+      (this.$refs as any).iframe.remove()
       this.$router.push('/')
     }
   }
