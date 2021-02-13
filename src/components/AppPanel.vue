@@ -19,6 +19,7 @@ import AppIcon from '@/components/AppIcon.vue'
 import openInNewTab from '@/utils/tab'
 import { Base64 } from 'js-base64'
 import { mapMutations } from 'vuex'
+import displayMessage from '@/utils/message'
 
 export default defineComponent({
   name: 'AppPanel',
@@ -33,6 +34,7 @@ export default defineComponent({
     }[];
     categoryIndex: number;
     apps: Apps;
+    lastAppName: string;
     } {
     return {
       categories: [],
@@ -48,7 +50,8 @@ export default defineComponent({
           return apps
         }
         return this.categories[this.categoryIndex - 1].apps
-      }
+      },
+      lastAppName: ''
     }
   },
   mounted () {
@@ -75,12 +78,23 @@ export default defineComponent({
         alert('正在施工，敬请期待..')
       } else {
         if (app.openInNew) {
-          openInNewTab(app.href)
+          if (app.description) {
+            if (this.lastAppName === app.name) {
+              openInNewTab(app.href)
+              this.lastAppName = ''
+              return
+            } else {
+              displayMessage(app.description)
+            }
+          } else {
+            openInNewTab(app.href)
+          }
         } else {
           this.setCurrentApp({ app })
           this.$router.push('/browser/' + Base64.encodeURL(app.href))
         }
       }
+      this.lastAppName = app.name
     }
   }
 })

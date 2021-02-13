@@ -27,4 +27,17 @@ body {
   opacity: 0;
   transform: scale(0.95);
 }
+.message {
+  position: fixed;
+  top: 10vmin;
+  left: 50%;
+  padding: 8px 16px;
+  max-width: 90vw;
+  transform: translateX(-50%);
+  background-color: fade(#eeeeee, 32);
+  backdrop-filter: blur(8px) saturate(200%) brightness(120%);
+  line-height: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0px 0px 32px 0px fade(black, 16);
+}
 </style>
