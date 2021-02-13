@@ -60,8 +60,8 @@ export default defineComponent({
   position: fixed;
   left: 0;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -88,6 +88,7 @@ export default defineComponent({
       margin: 0px 16px;
       color: #999999;
       word-break: keep-all;
+      white-space: nowrap;
       overflow-x: scroll;
       &::-webkit-scrollbar {
         display: none;
