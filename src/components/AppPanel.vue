@@ -17,6 +17,8 @@ import { defineComponent } from '@vue/runtime-core'
 import { App, Apps, Categories, getApps } from '@/utils/api'
 import AppIcon from '@/components/AppIcon.vue'
 import openInNewTab from '@/utils/tab'
+import { Base64 } from 'js-base64'
+import { mapMutations } from 'vuex'
 
 export default defineComponent({
   name: 'AppPanel',
@@ -64,6 +66,7 @@ export default defineComponent({
     })
   },
   methods: {
+    ...mapMutations(['setCurrentApp']),
     handleCategoryClick (index: number) {
       this.categoryIndex = index
     },
@@ -74,7 +77,8 @@ export default defineComponent({
         if (app.openInNew) {
           openInNewTab(app.href)
         } else {
-          alert('正在施工，敬请期待..')
+          this.setCurrentApp({ app })
+          this.$router.push('/browser/' + Base64.encodeURL(app.href))
         }
       }
     }

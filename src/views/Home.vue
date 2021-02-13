@@ -1,8 +1,13 @@
 <template>
-  <div :class="$style.whole">
+  <div :class="[$style.whole, enableScroll ? '' : $style.disableScroll]">
     <my-logo></my-logo>
     <app-panel></app-panel>
     <page-footer></page-footer>
+    <teleport to="body">
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
+    </teleport>
   </div>
 </template>
 
@@ -18,6 +23,21 @@ export default defineComponent({
     MyLogo,
     AppPanel,
     PageFooter
+  },
+  data (): {
+    enableScroll: boolean;
+    } {
+    return {
+      enableScroll: true
+    }
+  },
+  watch: {
+    $route: {
+      handler (val) {
+        this.enableScroll = val.path === '/'
+      },
+      deep: true
+    }
   }
 })
 </script>
@@ -47,6 +67,15 @@ export default defineComponent({
     content: '';
     backdrop-filter: blur(64px);
     z-index: -1;
+  }
+  &.disableScroll {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    filter: blur(16px);
   }
 }
 @keyframes fadein {

@@ -1,11 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
+import BuiltinBrowser from '@/views/BuiltinBrowser.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: 'browser/:href',
+        name: 'BuiltBrowser',
+        component: BuiltinBrowser
+      }
+    ]
   }
 ]
 
