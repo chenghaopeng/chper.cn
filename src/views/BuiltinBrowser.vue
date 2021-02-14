@@ -48,9 +48,12 @@ export default defineComponent({
       openInNewTab(this.app.repository)
     },
     handleClose () {
-      (this.$refs.iframe as HTMLElement).remove()
       this.$router.push('/')
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    (this.$refs.iframe as HTMLElement).remove()
+    next()
   }
 })
 </script>
