@@ -41,4 +41,11 @@ body {
   border-radius: 8px;
   box-shadow: 0px 0px 32px 0px fade(black, 16);
 }
+.fullscreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
 </style>

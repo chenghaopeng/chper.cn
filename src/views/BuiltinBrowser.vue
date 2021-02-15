@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.whole">
+  <div :class="[$style.whole, 'fullscreen']">
     <div :class="$style.header">
       <div :class="$style.name">{{ app.name }}</div>
       <div :class="$style.description" :title="app.description">{{ app.description }}</div>
@@ -60,11 +60,6 @@ export default defineComponent({
 
 <style lang="less" module>
 .whole {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;

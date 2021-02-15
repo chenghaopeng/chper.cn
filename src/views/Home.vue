@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$style.whole, enableScroll ? '' : $style.disableScroll]">
+  <div :class="[$style.whole, disable ? $style.disable : '']">
     <my-logo></my-logo>
     <app-panel></app-panel>
     <page-footer></page-footer>
@@ -26,19 +26,9 @@ export default defineComponent({
     AppPanel,
     PageFooter
   },
-  data (): {
-    enableScroll: boolean;
-    } {
-    return {
-      enableScroll: true
-    }
-  },
-  watch: {
-    $route: {
-      handler (val) {
-        this.enableScroll = val.path === '/'
-      },
-      deep: true
+  computed: {
+    disable () {
+      return this.$route.path !== '/'
     }
   }
 })
@@ -70,7 +60,7 @@ export default defineComponent({
     backdrop-filter: blur(64px);
     z-index: -1;
   }
-  &.disableScroll {
+  &.disable {
     position: fixed;
     left: 0;
     top: 0;
@@ -78,6 +68,7 @@ export default defineComponent({
     width: 100vw;
     overflow: hidden;
     filter: blur(16px);
+    pointer-events: none;
   }
 }
 @keyframes fadein {

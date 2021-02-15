@@ -75,7 +75,7 @@ export default defineComponent({
     },
     handleAppClick (app: App) {
       if (app.builtin) {
-        alert('正在施工，敬请期待..')
+        this.$router.push('/' + app.href)
       } else {
         if (app.openInNew) {
           if (app.description) {
