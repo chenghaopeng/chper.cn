@@ -84,7 +84,7 @@ export default defineComponent({
               this.lastAppName = ''
               return
             } else {
-              displayMessage(app.description)
+              displayMessage(app.description + '（再次点按以打开）')
             }
           } else {
             openInNewTab(app.href)

@@ -26,6 +26,7 @@ body {
 .fade-leave-to {
   opacity: 0;
   transform: scale(0.95);
+  box-shadow: 0px 0px 128px 0px fade(black, 32);
 }
 .message {
   position: fixed;
