@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.whole">
-    <dynamic-logo></dynamic-logo>
+    <dynamic-logo :dynamic="false"></dynamic-logo>
     <div :class="$style.pp">鹏鹏</div>
   </div>
 </template>
