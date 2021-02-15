@@ -37,27 +37,27 @@ export default defineComponent({
   },
   mounted () {
     const styleId = 'dynamic-logo'
-    if (!isMobile && this.dynamic && !document.getElementById(styleId)) {
-      const keyframes: string[] = []
-      import('@/assets/logo').then(res => {
-        this.logoPieces = res.default.map((piece, index) => {
-          const keyframeName = 'logoPieceKeyframes' + index
-          keyframes.push(`@keyframes ${keyframeName} {
-            0% { opacity: 1; }
-            100% { opacity: ${1 - Math.pow(Math.random(), Math.random() * 3) / 2.5}; }
-          }`)
-          return {
-            clipPath: `polygon(${piece[0]})`,
-            backgroundColor: piece[1],
-            animation: `${keyframeName} ${Math.pow(Math.random(), Math.random() * 3) * 3 + 2}s ease-in-out ${Math.pow(Math.random(), Math.random() * 3) * 4 + 4}s 3 alternate-reverse`
-          }
-        })
+    const keyframes: string[] = []
+    import('@/assets/logo').then(res => {
+      this.logoPieces = res.default.map((piece, index) => {
+        const keyframeName = 'logoPieceKeyframes' + index
+        keyframes.push(`@keyframes ${keyframeName} {
+          0% { opacity: 1; }
+          100% { opacity: ${1 - Math.pow(Math.random(), Math.random() * 3) / 2.5}; }
+        }`)
+        return {
+          clipPath: `polygon(${piece[0]})`,
+          backgroundColor: piece[1],
+          animation: `${keyframeName} ${Math.pow(Math.random(), Math.random() * 3) * 3 + 2}s ease-in-out ${Math.pow(Math.random(), Math.random() * 3) * 4 + 4}s 3 alternate-reverse`
+        }
+      })
+      if (!isMobile && this.dynamic && !document.getElementById(styleId)) {
         const style = document.createElement('style')
         style.id = styleId
         style.innerText = keyframes.join('\n')
         document.body.appendChild(style)
-      })
-    }
+      }
+    })
   }
 })
 </script>
