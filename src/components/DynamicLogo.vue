@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.whole">
+  <div :class="[$style.whole, round ? $style.round : '']">
     <template v-if="dynamic">
       <span v-for="piece in logoPieces" :key="piece" :style="piece"></span>
       <span></span>
@@ -16,6 +16,10 @@ export default defineComponent({
   name: 'DynamicLogo',
   props: {
     dynamic: {
+      type: Boolean,
+      default: true
+    },
+    round: {
       type: Boolean,
       default: true
     }
@@ -67,8 +71,11 @@ export default defineComponent({
   position: relative;
   box-shadow: 0px 0px 32px 0px fade(black, 16);
   background-color: white;
-  border-radius: 50%;
+  border-radius: 8%;
   overflow: hidden;
+  &.round {
+    border-radius: 50%;
+  }
   > * {
     width: 100%;
     height: 100%;
