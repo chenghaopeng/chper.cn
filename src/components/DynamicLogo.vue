@@ -32,7 +32,8 @@ export default defineComponent({
     }
   },
   mounted () {
-    if (!isMobile && this.dynamic) {
+    const styleId = 'dynamic-logo'
+    if (!isMobile && this.dynamic && !document.getElementById(styleId)) {
       const keyframes: string[] = []
       import('@/assets/logo').then(res => {
         this.logoPieces = res.default.map((piece, index) => {
@@ -48,9 +49,9 @@ export default defineComponent({
           }
         })
         const style = document.createElement('style')
+        style.id = styleId
         style.innerText = keyframes.join('\n')
-        const body = document.querySelector('body') as HTMLBodyElement
-        body.appendChild(style)
+        document.body.appendChild(style)
       })
     }
   }
@@ -65,6 +66,7 @@ export default defineComponent({
   height: 75vmin;
   position: relative;
   box-shadow: 0px 0px 32px 0px fade(black, 16);
+  background-color: white;
   border-radius: 50%;
   overflow: hidden;
   > * {
