@@ -22,6 +22,7 @@ body {
   transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   filter: blur(4px);
   overflow: hidden;
+  pointer-events: none;
 }
 .fade-enter-from,
 .fade-leave-to {
