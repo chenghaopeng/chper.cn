@@ -25,6 +25,7 @@ pnpm-debug.log*
 node_modules*
 
 .history
+.VSCodeCounter
 
 资源
 

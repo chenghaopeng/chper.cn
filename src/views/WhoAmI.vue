@@ -42,7 +42,7 @@ export default defineComponent({
   methods: {
     handleBack () {
       this.hiding = true
-      setTimeout(() => this.$router.push('/'), 1100)
+      setTimeout(() => this.$router.push('/'), 1200)
     }
   },
   beforeRouteLeave (to, from, next) {
@@ -71,6 +71,7 @@ export default defineComponent({
       animation-duration: 0.5s;
       animation-fill-mode: both;
       animation-timing-function: ease-in-out;
+      box-shadow: -1vmin -1vmin 2vmin 0px fade(black, 32) inset, 1vmin 1vmin 2vmin 0px fade(white, 64) inset;
       &.out {
         animation-name: moveout;
       }
