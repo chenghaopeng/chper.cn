@@ -19,14 +19,16 @@ body {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: 0.5s ease-in-out;
+  transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   filter: blur(4px);
+  overflow: hidden;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(0.2);
   box-shadow: 0px 0px 128px 0px fade(black, 32);
+  border-radius: 50%;
 }
 .message {
   position: fixed;

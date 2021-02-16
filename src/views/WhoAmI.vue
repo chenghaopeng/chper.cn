@@ -63,6 +63,7 @@ export default defineComponent({
   }
   .background {
     display: flex;
+    overflow: hidden;
     z-index: -1;
     span {
       flex: 1;

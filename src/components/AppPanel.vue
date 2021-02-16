@@ -7,7 +7,7 @@
       </div>
     </div>
     <div :class="$style.apps">
-      <app-icon v-for="app in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(app)"></app-icon>
+      <app-icon v-for="app in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(app, $event)"></app-icon>
     </div>
   </div>
 </template>
@@ -69,11 +69,14 @@ export default defineComponent({
     })
   },
   methods: {
-    ...mapMutations(['setCurrentApp']),
+    ...mapMutations(['setCurrentApp', 'setClickPosition']),
     handleCategoryClick (index: number) {
       this.categoryIndex = index
     },
-    handleAppClick (app: App) {
+    handleAppClick (app: App, e: MouseEvent) {
+      const x = e.clientX / document.body.clientWidth * 100
+      const y = e.clientY / document.body.clientHeight * 100
+      this.setClickPosition({ position: `${x}% ${y}%` })
       if (app.builtin) {
         this.$router.push('/' + app.href)
       } else {

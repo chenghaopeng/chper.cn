@@ -6,7 +6,7 @@
     <teleport to="body">
       <router-view v-slot="{ Component }">
         <transition name="fade">
-          <component :is="Component" />
+          <component :is="Component" :style="{ transformOrigin: clickPosition }" />
         </transition>
       </router-view>
     </teleport>
@@ -18,6 +18,7 @@ import { defineComponent } from 'vue'
 import MyLogo from '@/components/MyLogo.vue'
 import AppPanel from '@/components/AppPanel.vue'
 import PageFooter from '@/components/PageFooter.vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'Home',
@@ -27,6 +28,7 @@ export default defineComponent({
     PageFooter
   },
   computed: {
+    ...mapState(['clickPosition']),
     disable () {
       return this.$route.path !== '/'
     }

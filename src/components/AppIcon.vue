@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.whole" :style="{ '--size': (size | 0) * 32 + 'px', '--name': `'${this.name}'` }">
-    <svg viewBox="0 0 128 128" @click="handleClick">
+    <svg viewBox="0 0 128 128" @click="handleClick($event)">
       <defs>
         <clipPath :id="id">
           <path :d="path"></path>
@@ -47,8 +47,8 @@ export default defineComponent({
     }
   },
   methods: {
-    handleClick () {
-      this.$emit('click')
+    handleClick (e: MouseEvent) {
+      this.$emit('click', e)
     }
   }
 })
