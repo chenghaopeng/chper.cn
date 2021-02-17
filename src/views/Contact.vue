@@ -1,8 +1,10 @@
 <template>
   <div :class="[$style.whole, 'fullscreen']" @click="handleBackgroundClick">
-    <div :class="$style.contacts">
-      <div v-for="contact in contacts" :key="contact.name" :class="$style.contact" @click.stop="handleContactClick(contact.href)">
-        {{ contact.name }}
+    <div :class="$style.contacts" @click.stop>
+      <div :class="$style.contact">鹏鹏的联系方式与社交平台</div>
+      <div v-for="contact in contacts" :key="contact.name" :class="$style.contact">
+        <div :class="$style.name">{{ contact.name }}</div>
+        <div :class="$style.title" @click="handleContactClick(contact.href)">{{ contact.title }}</div>
       </div>
     </div>
   </div>
@@ -19,22 +21,27 @@ export default defineComponent({
       contacts: [
         {
           name: 'QQ',
+          title: '794780360',
           href: 'tencent://Message/?Uin=794780360&websiteName=q-zone.qq.com&Menu=yes'
         },
         {
           name: 'GitHub',
+          title: 'chenghaopeng',
           href: 'https://github.com/chenghaopeng'
         },
         {
           name: '领英',
+          title: 'chenghaopeng',
           href: 'https://www.linkedin.com/in/chenghaopeng'
         },
         {
           name: 'deepin 社区',
+          title: 'chenghaopeng',
           href: 'https://bbs.deepin.org/zh/user/74043'
         },
         {
           name: '知乎',
+          title: '鹏鹏',
           href: 'https://www.zhihu.com/people/cheng-hao-peng-70'
         }
       ]
@@ -53,33 +60,63 @@ export default defineComponent({
 
 <style lang="less" module>
 .whole {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  background-color: fade(black, 64);
+  background-color: fade(black, 48);
+  backdrop-filter: blur(64px);
   .contacts {
-    max-width: 432px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    top: 15vh;
+    left: 50%;
+    width: 75vw;
+    height: 100vh;
+    max-width: 512px;
+    padding: 8vw;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-content: start;
+    background-image: linear-gradient(135deg, #fcf1a1, #c4b45e);
+    box-shadow: 0px 0px 10vw 0px fade(black, 32);
+    border-radius: 5vw 8vw 0px 0px;
+    animation: flyin 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
     .contact {
-      margin: 8px;
-      padding: 12px;
-      width: 128px;
-      background-image: linear-gradient(135deg, #eeeeee, #bbbbbb);
-      text-align: center;
-      border-radius: 8px;
-      user-select: none;
-      cursor: pointer;
-      box-shadow: 4px 4px 8px 0px fade(white, 16);
-      &:active {
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 4px 0px fade(white, 32);
-        background-image: linear-gradient(-45deg, #eeeeee, #bbbbbb);
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+      line-height: 1.7em;
+      &:hover {
+        .title {
+          transform: translateX(-8px);
+        }
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #dbc773;
+      }
+      .name {
+        color: #807343;
+      }
+      .title {
+        color: #333333;
+        cursor: pointer;
+        transition: 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
     }
   }
+}
+@keyframes flyin {
+  0% { transform: translate(-50%, 100vh); }
+  100% { transform: translate(-50%, 0); }
+}
+@keyframes flyout {
+  0% { transform: translate(-50%, 0); }
+  100% { transform: translate(-50%, 100vh); }
 }
 </style>
