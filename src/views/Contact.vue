@@ -66,10 +66,8 @@ export default defineComponent({
     position: fixed;
     top: 15vh;
     left: 50%;
-    width: 75vw;
     height: 100vh;
-    max-width: 512px;
-    padding: 8vw;
+    padding: 32px;
     transform: translateX(-50%);
     display: grid;
     grid-template-columns: 1fr;
@@ -77,10 +75,12 @@ export default defineComponent({
     align-content: start;
     background-image: linear-gradient(135deg, #fcf1a1, #c4b45e);
     box-shadow: 0px 0px 10vw 0px fade(black, 32);
-    border-radius: 5vw 8vw 0px 0px;
+    border-radius: 32px 64px 0px 0px;
     animation: flyin 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
     .contact {
       position: relative;
+      width: 75vw;
+      max-width: 384px;
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
