@@ -6,7 +6,7 @@
           <path :d="path"></path>
         </clipPath>
       </defs>
-      <image x="0" y="0" width="100%" height="100%" :href="src" :clip-path="`url(#${id})`"></image>
+      <image x="0" y="0" width="100%" height="100%" :href="src || defaultIcon" :clip-path="`url(#${id})`"></image>
     </svg>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default defineComponent({
   props: {
     src: {
       type: String,
-      default: require('@/assets/logo.jpg')
+      default: ''
     },
     rounder: {
       type: Boolean,
@@ -37,6 +37,7 @@ export default defineComponent({
   },
   data () {
     return {
+      defaultIcon: require('@/assets/logo.jpg'),
       id: 'app-icon-' + Math.random()
     }
   },

@@ -7,7 +7,7 @@
       </div>
     </div>
     <div :class="$style.apps">
-      <app-icon v-for="app in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(app, $event)"></app-icon>
+      <app-icon v-for="app in apps" :key="app.name" :class="$style.app" :name="app.name" :size="3" @click="handleAppClick(app, $event)" :src="app.icon"></app-icon>
     </div>
   </div>
 </template>
