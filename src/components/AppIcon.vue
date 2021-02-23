@@ -62,6 +62,7 @@ export default defineComponent({
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  filter: drop-shadow(0px 0px 16px fade(black, 16));
   &::after {
     content: var(--name);
     position: absolute;
