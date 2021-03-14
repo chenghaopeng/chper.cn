@@ -49,7 +49,7 @@ export default defineComponent({
     animation-name: fadein;
     animation-delay: 2s;
     animation-duration: 1s;
-    animation-fill-mode: both;
+    animation-fill-mode: backwards;
     animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
   }
   &::before {
