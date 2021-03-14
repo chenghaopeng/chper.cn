@@ -22,7 +22,7 @@ export default defineComponent({
   height: 100vh;
 }
 .whole {
-  background-image: url(../assets/bg.svg);
+  background-image: url(https://chper-assets.oss-cn-shanghai.aliyuncs.com/chper.cn/img/bg.svg);
   background-size: cover;
   background-position: 50% 50%;
   z-index: -100;

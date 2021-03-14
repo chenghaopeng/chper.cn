@@ -91,7 +91,7 @@ export default defineComponent({
     top: 0;
   }
   .img {
-    background-image: url(../assets/logo.jpg);
+    background-image: url(https://chper-assets.oss-cn-shanghai.aliyuncs.com/chper.cn/img/logo.jpg);
     background-size: cover;
   }
 }

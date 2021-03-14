@@ -37,7 +37,7 @@ export default defineComponent({
   },
   data () {
     return {
-      defaultIcon: require('@/assets/logo.jpg'),
+      defaultIcon: 'https://chper-assets.oss-cn-shanghai.aliyuncs.com/chper.cn/img/logo.jpg',
       id: 'app-icon-' + Math.random()
     }
   },
