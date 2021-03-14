@@ -1,6 +1,7 @@
 <template>
   <div :class="[$style.whole, 'fullscreen']">
     <div :class="$style.header">
+      <app-icon :src="app.icon" :size="1" :active="false"></app-icon>
       <div :class="$style.name">{{ app.name }}</div>
       <div :class="$style.description" :title="app.description">{{ app.description }}</div>
       <div :class="$style.controls">
@@ -26,9 +27,13 @@ import { defineComponent } from '@vue/runtime-core'
 import { Base64 } from 'js-base64'
 import { mapMutations, mapState } from 'vuex'
 import openInNewTab from '@/utils/tab'
+import AppIcon from '@/components/AppIcon.vue'
 
 export default defineComponent({
   name: 'BuiltinBrowser',
+  components: {
+    AppIcon
+  },
   mounted () {
     if (this.href !== Base64.decode(this.$route.params.href as string)) {
       this.handleClose()
@@ -77,6 +82,7 @@ export default defineComponent({
     align-items: center;
     background-color: #333333;
     .name {
+      margin-left: 16px;
       flex: none;
       color: white;
       font-size: larger;

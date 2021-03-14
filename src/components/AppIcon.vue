@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.whole" :style="{ '--size': (size | 0) * 32 + 'px', '--name': `'${this.name}'` }">
+  <div :class="[$style.whole, active ? $style.active : '']" :style="{ '--size': (size | 0) * 32 + 'px', '--name': `'${this.name}'` }">
     <svg viewBox="0 0 128 128" @click="handleClick($event)">
       <defs>
         <clipPath :id="id">
@@ -33,6 +33,10 @@ export default defineComponent({
     name: {
       type: String,
       default: ''
+    },
+    active: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -62,7 +66,15 @@ export default defineComponent({
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
-  filter: drop-shadow(0px 0px 16px fade(black, 16));
+  &.active {
+    filter: drop-shadow(0px 0px 16px fade(black, 16));
+    svg {
+      cursor: pointer;
+      &:active {
+        filter: brightness(64%);
+      }
+    }
+  }
   &::after {
     content: var(--name);
     position: absolute;
@@ -72,10 +84,6 @@ export default defineComponent({
   svg {
     height: var(--size);
     width: var(--size);
-    cursor: pointer;
-    &:active {
-      filter: brightness(64%);
-    }
   }
 }
 </style>
