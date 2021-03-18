@@ -22,3 +22,17 @@ export type Categories = Category[]
 export const getApps = () => {
   return fetchJSON('/data/apps.json') as Promise<{categories: Categories}>
 }
+
+export type TimeLine = {
+  time: string;
+  content: string | string[];
+}
+
+export type WebHistory = {
+  timelines: TimeLine[];
+  curtain?: string;
+}
+
+export const getHistory = () => {
+  return fetchJSON('/data/history.json') as Promise<WebHistory>
+}
