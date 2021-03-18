@@ -36,3 +36,15 @@ export type WebHistory = {
 export const getHistory = () => {
   return fetchJSON('/data/history.json') as Promise<WebHistory>
 }
+
+export type Friend = {
+  name: string;
+  href: string;
+  icon?: string;
+}
+
+export type Friends = Friend[]
+
+export const getFriends = () => {
+  return fetchJSON('/data/friends.json') as Promise<{friends: Friends}>
+}
