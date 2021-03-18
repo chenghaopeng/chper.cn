@@ -50,5 +50,6 @@ body {
   top: 0;
   height: 100%;
   width: 100%;
+  backdrop-filter: blur(64px);
 }
 </style>

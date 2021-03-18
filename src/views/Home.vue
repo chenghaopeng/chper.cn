@@ -69,7 +69,6 @@ export default defineComponent({
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    filter: blur(16px);
     pointer-events: none;
   }
 }
