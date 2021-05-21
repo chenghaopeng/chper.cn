@@ -17,12 +17,25 @@ body {
   text-align: center;
   color: #2c3e50;
 }
+@keyframes blurin {
+  0% { filter: blur(4px); }
+  100% { filter: blur(0px); }
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   filter: blur(4px);
   overflow: hidden;
   pointer-events: none;
+}
+.fade-enter-active {
+  animation-name: blurin;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+.fade-leave-active {
+  filter: blur(4px);
 }
 .fade-enter-from,
 .fade-leave-to {
