@@ -1,4 +1,4 @@
-import { fetchJSON } from './request'
+import { fetchData } from './request'
 
 export type App = {
   name: string;
@@ -20,7 +20,7 @@ export type Category = {
 export type Categories = Category[]
 
 export const getApps = () => {
-  return fetchJSON('/data/apps.json') as Promise<{categories: Categories}>
+  return fetchData('apps') as Promise<{categories: Categories}>
 }
 
 export type TimeLine = {
@@ -34,7 +34,7 @@ export type WebHistory = {
 }
 
 export const getHistory = () => {
-  return fetchJSON('/data/history.json') as Promise<WebHistory>
+  return fetchData('history') as Promise<WebHistory>
 }
 
 export type Friend = {
@@ -46,5 +46,5 @@ export type Friend = {
 export type Friends = Friend[]
 
 export const getFriends = () => {
-  return fetchJSON('/data/friends.json') as Promise<{friends: Friends}>
+  return fetchData('friends') as Promise<{friends: Friends}>
 }
