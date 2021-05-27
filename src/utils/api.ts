@@ -48,3 +48,15 @@ export type Friends = Friend[]
 export const getFriends = () => {
   return fetchData('friends') as Promise<{friends: Friends}>
 }
+
+export type Contact = {
+  name: string;
+  title: string;
+  href: string;
+}
+
+export type Contacts = Contact[]
+
+export const getContacts = () => {
+  return fetchData('contacts') as Promise<{contacts: Contacts}>
+}

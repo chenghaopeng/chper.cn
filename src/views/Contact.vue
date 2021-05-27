@@ -13,38 +13,15 @@
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-core'
 import openInNewTab from '@/utils/tab'
+import { Contacts, getContacts } from '@/utils/api'
 
 export default defineComponent({
   name: 'Contact',
-  data () {
+  data (): {
+    contacts: Contacts;
+    } {
     return {
-      contacts: [
-        {
-          name: 'QQ',
-          title: '794780360',
-          href: 'tencent://Message/?Uin=794780360&websiteName=q-zone.qq.com&Menu=yes'
-        },
-        {
-          name: 'GitHub',
-          title: 'chenghaopeng',
-          href: 'https://github.com/chenghaopeng'
-        },
-        {
-          name: '领英',
-          title: 'chenghaopeng',
-          href: 'https://www.linkedin.com/in/chenghaopeng'
-        },
-        {
-          name: 'deepin 社区',
-          title: 'chenghaopeng',
-          href: 'https://bbs.deepin.org/zh/user/74043'
-        },
-        {
-          name: '知乎',
-          title: '鹏鹏',
-          href: 'https://www.zhihu.com/people/cheng-hao-peng-70'
-        }
-      ]
+      contacts: []
     }
   },
   methods: {
@@ -54,6 +31,11 @@ export default defineComponent({
     handleBackgroundClick () {
       this.$router.push('/')
     }
+  },
+  created () {
+    getContacts().then(res => {
+      this.contacts = res.contacts
+    })
   }
 })
 </script>
