@@ -1,7 +1,7 @@
 <template>
   <footer :class="$style.whole">
-    <div>本工地正在持续施工中，注意安全，敬请期待...</div>
-    <div>© 2014-2021 鹏鹏 享有并保留本站所有包括但不限于文本、图片、视频等的所有权利</div>
+    <div>感谢所有助力我成长的人</div>
+    <div>© 2013-2021 鹏鹏 享有并保留本站所有原创内容的权利</div>
   </footer>
 </template>
 
