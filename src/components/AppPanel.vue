@@ -155,7 +155,7 @@ export default defineComponent({
     flex-flow: row wrap;
     justify-content: center;
     .app {
-      margin: 24px 16px;
+      margin: 24px 12px;
     }
   }
 }

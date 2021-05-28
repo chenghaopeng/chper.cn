@@ -39,7 +39,7 @@ export default defineComponent({
 <style lang="less" module>
 .whole {
   min-height: 100vh;
-  padding: 8vmin;
+  padding: 8vmin 2vmin;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, auto) 1fr;
@@ -47,10 +47,9 @@ export default defineComponent({
   align-content: start;
   &, &::before {
     animation-name: fadein;
-    animation-delay: 2s;
     animation-duration: 1s;
     animation-fill-mode: backwards;
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+    animation-timing-function: ease-in-out;
   }
   &::before {
     position: fixed;

@@ -67,7 +67,7 @@ export default defineComponent({
   justify-content: flex-start;
   align-items: center;
   &.active {
-    filter: drop-shadow(0px 0px 16px fade(black, 16));
+    filter: drop-shadow(0px 0px 16px fade(black, 8));
     svg {
       cursor: pointer;
       &:active {
