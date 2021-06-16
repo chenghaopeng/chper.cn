@@ -165,7 +165,8 @@ export default defineComponent({
 }
 @media screen and (max-width: 512px) {
   .tab {
-    padding: 2px 12px !important;
+    margin: 4px 0 !important;
+    padding: 2px 8px !important;
     .name {
       display: none;
     }
